@@ -84,7 +84,7 @@ def fetch_feed_entries(name, url):
         return []
 
 
-MAX_ENTRIES_FOR_GROQ = 40  # keeps the digest well under the free-tier TPM limit
+MAX_ENTRIES_FOR_GROQ = 50  # keeps the digest well under the free-tier TPM limit
 
 
 def collect_all_entries():
@@ -122,12 +122,14 @@ def call_groq(entries):
         '  "today_read": [str, str, str],\n'
         '  "stories": [\n'
         '    {"title": str, "summary": str, "source": str, "url": str}\n'
-        "    ... up to 12 more stories, ranked by significance\n"
+        "    ... ranked by significance\n"
         "  ]\n"
         "}\n"
         "The lead should be the single most significant item. today_read is 3 short "
         "synthesis sentences connecting patterns across multiple stories, not a "
-        "restatement of the lead. stories should not repeat the lead."
+        "restatement of the lead. stories should not repeat the lead. Include AT LEAST "
+        "8 items in stories if the source material supports it (aim for 8-12) — do not "
+        "artificially narrow the list to only the top 2-3."
     )
 
     payload = {
@@ -211,7 +213,8 @@ def render_html(briefing, generated_at_iso):
   .lead {{ border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 24px; }}
   .lead h2 {{ font-family: var(--font-display); font-size: 28px; font-weight: 400; margin: 8px 0 12px; }}
   .lead p {{ color: var(--ink-dim); font-size: 15px; }}
-  .lead a {{ color: inherit; }}
+  .lead a {{ color: inherit; text-decoration: none; }}
+  .lead a:hover {{ color: var(--accent); }}
   .eyebrow {{ font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }}
   .today-read {{ background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 20px; margin-bottom: 32px; }}
   .today-read h3 {{ font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--ink-dim); margin: 0 0 10px; }}
