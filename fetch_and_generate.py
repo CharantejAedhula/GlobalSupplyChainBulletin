@@ -73,7 +73,7 @@ def fetch_feed_entries(name, url):
             entries.append({
                 "source": name,
                 "title": getattr(e, "title", "").strip(),
-                "summary": summary.strip()[:400],
+                "summary": summary.strip()[:200],
                 "url": getattr(e, "link", ""),
                 "published": published.isoformat() if published else None,
             })
@@ -84,12 +84,16 @@ def fetch_feed_entries(name, url):
         return []
 
 
+MAX_ENTRIES_FOR_GROQ = 40  # keeps the digest well under the free-tier TPM limit
+
+
 def collect_all_entries():
     print("Fetching RSS feeds...", file=sys.stderr)
     all_entries = []
     for name, url in FEEDS:
         all_entries.extend(fetch_feed_entries(name, url))
-    return all_entries
+    all_entries.sort(key=lambda e: e["published"] or "", reverse=True)
+    return all_entries[:MAX_ENTRIES_FOR_GROQ]
 
 
 def call_groq(entries):
@@ -134,6 +138,7 @@ def call_groq(entries):
         ],
         "temperature": 0.3,
         "response_format": {"type": "json_object"},
+        "max_tokens": 2000,
     }
 
     req = urllib.request.Request(
