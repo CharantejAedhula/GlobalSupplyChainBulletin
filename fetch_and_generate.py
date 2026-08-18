@@ -20,6 +20,7 @@ import html
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
@@ -141,11 +142,17 @@ def call_groq(entries):
         headers={
             "Authorization": f"Bearer {GROQ_API_KEY}",
             "Content-Type": "application/json",
+            "User-Agent": USER_AGENT,
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        result = json.loads(resp.read())
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            result = json.loads(resp.read())
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode(errors="replace")
+        print(f"GROQ request failed: HTTP {exc.code}\nResponse body: {body}", file=sys.stderr)
+        raise
 
     content = result["choices"][0]["message"]["content"]
     return json.loads(content)
