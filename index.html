@@ -5,16 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Global Supply Chain Bulletin — Fallback Edition</title>
 <style>
-  body { margin: 0; background: #0c1310; color: #eee8da; font-family: -apple-system, sans-serif; }
-  .wrap { max-width: 700px; margin: 80px auto; padding: 0 24px; text-align: center; }
-  h1 { font-family: Georgia, serif; }
-  p { color: #93a39a; }
+  :root {
+    --bg: #0c1310; --surface: #131f1a; --ink: #eee8da; --ink-dim: #93a39a;
+    --ink-faint: #5f6f66; --rule: rgba(238,232,218,0.14); --accent: #ec5b57;
+    --font-display: Georgia, "Times New Roman", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.5; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 24px 80px; }
+  .banner {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+    padding: 12px 16px; margin-bottom: 28px; font-family: var(--font-mono);
+    font-size: 12px; color: var(--ink-dim); text-align: center;
+  }
+  h1 { font-family: var(--font-display); font-size: clamp(28px, 5vw, 42px); margin: 0 0 6px; }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 32px; }
+  .lead { border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 24px; }
+  .lead h2 { font-family: var(--font-display); font-size: 28px; font-weight: 400; margin: 8px 0 12px; }
+  .lead p { color: var(--ink-dim); font-size: 15px; }
+  .lead a { color: inherit; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+  .today-read { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 20px; margin-bottom: 32px; }
+  .today-read h3 { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; color: var(--ink-dim); margin: 0 0 10px; }
+  .today-read ul { margin: 0; padding-left: 18px; }
+  .today-read li { font-size: 13.5px; margin-bottom: 8px; }
+  .card { padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .card-src { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; margin-bottom: 4px; }
+  .card h3 { font-family: var(--font-display); font-weight: 400; font-size: 18px; margin: 0 0 6px; }
+  .card h3 a { color: var(--ink); text-decoration: none; }
+  .card h3 a:hover { color: var(--accent); }
+  .card .dek { color: var(--ink-dim); font-size: 13.5px; margin: 0; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 10.5px; color: var(--ink-faint); text-align: center; font-family: var(--font-mono); }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Global Supply Chain Bulletin — Fallback Edition</h1>
-  <p>Waiting for the first scheduled run, or trigger one manually from the Actions tab (workflow_dispatch).</p>
+  <div class="banner">FALLBACK EDITION — generated from public RSS feeds via a free GROQ model, not the Claude-powered pipeline. Simpler synthesis, no live web verification.</div>
+  <h1>Global <em>Supply Chain</em> Bulletin</h1>
+  <div class="meta">As of Tuesday, August 18, 2026 · 04:07 UTC</div>
+
+  <div class="lead">
+    <div class="eyebrow">Lead</div>
+    <h2><a href="https://gcaptain.com/iran-threatens-to-go-offensive-in-strait-of-hormuz-if-diplomacy-with-us-fails/" target="_blank" rel="noopener">Iran Threatens to Go On Offensive in Strait of Hormuz if Diplomacy With US Fails</a></h2>
+    <p>Iran has decided to shift its policy from defensive to &quot;fully offensive&quot; due to the deadlock in efforts to agree a permanent end to its war with the United States, a senior Iranian official told Reuters.</p>
+  </div>
+
+  <div class="today-read">
+    <h3>Today's Read</h3>
+    <ul><li>Rising geopolitical friction in the Middle East—from Iran’s aggressive posture in the Strait of Hormuz to a major fuel depot fire in Iraq—is tightening energy supply chains and keeping oil markets volatile.</li><li>Governments and investors are simultaneously expanding critical infrastructure, exemplified by the U.S. Army Corps approving a new Mississippi River container terminal and Abu Dhabi’s wealth fund moving to acquire a major port operator.</li><li>Parallel to these macro moves, the industry is pushing technology and security upgrades, from AI‑focused shipping discussions and Korean Air’s cargo‑automation projects to heightened alerts over sophisticated freight fraud schemes.</li></ul>
+  </div>
+
+  <div class="river">
+        <article class="card">
+          <div class="card-src">Al Jazeera</div>
+          <h3><a href="https://www.aljazeera.com/news/2026/8/18/large-fire-breaks-out-at-fuel-depot-near-iraqs-sulaimaniyah?traffic_source=rss" target="_blank" rel="noopener">Large fire breaks out at fuel depot near Iraq’s Sulaimaniyah</a></h3>
+          <p class="dek">At least 20 injured and dozens of fuel tankers destroyed as flames rip through warehouse near northern Kurdish city.</p>
+        </article>
+        <article class="card">
+          <div class="card-src">gCaptain</div>
+          <h3><a href="https://gcaptain.com/army-corps-greenlights-major-new-container-terminal-on-mississippi-river/" target="_blank" rel="noopener">Army Corps Greenlights Major New Container Terminal on Mississippi River</a></h3>
+          <p class="dek">The U.S. Army Corps of Engineers has granted the federal permit needed to build the Louisiana International Terminal, clearing a major regulatory hurdle for the planned deepwater container terminal on...</p>
+        </article>
+        <article class="card">
+          <div class="card-src">gCaptain</div>
+          <h3><a href="https://gcaptain.com/abu-dhabi-wealth-fund-limads-ports-deal-signals-growing-role/" target="_blank" rel="noopener">Abu Dhabi Wealth Fund L’imad’s Ports Deal Signals Growing Role</a></h3>
+          <p class="dek">Abu Dhabi wealth fund L’imad Holding is offering to buy out minority shareholders in the city’s port operator valuing the firm at 31.8 billion dirhams ($8.66 billion), potentially bolstering the emirate’s...</p>
+        </article></div>
+
+  <footer>© 2026 GLOBAL SUPPLY CHAIN BULLETIN — FALLBACK EDITION · AI-ASSISTED, RSS-SOURCED</footer>
 </div>
 </body>
 </html>
