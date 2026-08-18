@@ -50,7 +50,7 @@ being saved correctly.
 
 - `fetch_and_generate.py` pulls recent items from a fixed list of public RSS
   feeds (gCaptain, Splash247, The Loadstar, FreightWaves, Mining.com, Al
-  Jazeera), sends the raw headlines to GROQ's `llama-3.3-70b-versatile`
+  Jazeera), sends the raw headlines to GROQ's `openai/gpt-oss-120b`
   model with instructions to synthesize a lead story, a "Today's Read"
   summary, and a ranked list of other stories — as JSON, not free text.
 - The script renders that JSON into `index.html` using a fixed template
