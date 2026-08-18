@@ -140,7 +140,9 @@ def call_groq(entries):
         ],
         "temperature": 0.3,
         "response_format": {"type": "json_object"},
-        "max_tokens": 2000,
+        "max_tokens": 3000,
+        "reasoning_effort": "low",  # gpt-oss burns max_tokens on hidden reasoning otherwise,
+                                     # starving the actual JSON output
     }
 
     req = urllib.request.Request(
@@ -264,6 +266,14 @@ def main():
 
     print(f"Collected {len(entries)} entries total. Calling GROQ...", file=sys.stderr)
     briefing = call_groq(entries)
+
+    if not briefing.get("stories") or not briefing.get("today_read") or not briefing.get("lead"):
+        print(
+            "GROQ returned an incomplete briefing (empty lead/today_read/stories) -- "
+            "refusing to publish a broken page. Leaving the previous index.html in place.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     generated_at = datetime.now(timezone.utc).strftime("%A, %B %-d, %Y · %H:%M UTC")
     output = render_html(briefing, generated_at)
